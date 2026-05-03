@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "serve": "live-server ./src",
+    "build": "tsc && npm run copy:html",
+    "copy:html": "find src -type f -name \"*.html\" -exec sh -c 'mkdir -p \"$(dirname \"dist/${1#src/}\")\" && cp \"$1\" \"dist/${1#src/}\"' _ {} \\;",
+    "dev": "concurrently \"tsc --watch\" \"chokidar 'src/**/*.html' -c 'npm run copy:html'\" \"live-server ./dist\"",
+    "serve": "live-server ./dist",
+    "start": "npm run build && npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +24,8 @@
   },
   "homepage": "https://github.com/uabdirasul/final-project#readme",
   "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.2.1",
     "live-server": "^1.2.2",
     "typescript": "^6.0.3"
   }

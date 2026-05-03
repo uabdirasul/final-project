@@ -1,5 +1,1 @@
-enum Testing {
-  Unit,
-  Integration,
-  EndToEnd
-}
+console.log("testing");
