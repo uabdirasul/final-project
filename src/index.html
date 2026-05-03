@@ -4,20 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tailwind CSS Project</title>
+  <title>Chat App</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
 </head>
 
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
   <nav class="bg-white shadow-lg">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-indigo-600">MyApp</h1>
-      <ul class="flex gap-6">
-        <li><a href="#" class="text-red-600 hover:text-indigo-600 transition">Home</a></li>
-        <li><a href="#" class="text-gray-600 hover:text-indigo-600 transition">About</a></li>
-        <li><a href="#" class="text-gray-600 hover:text-indigo-600 transition">Contact</a></li>
-      </ul>
+      <h1 class="text-2xl font-bold text-indigo-600">Chat App</h1>
+      <div class="flex gap-6 items-center">
+        <div class="flex items-center gap-4">
+          <span class="text-gray-700">Logged in as: <span id="currentUser"
+              class="font-bold text-indigo-600"></span></span>
+          <button id="logoutBtn"
+            class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition">
+            Logout
+          </button>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -58,7 +62,16 @@
     </div>
   </footer>
 
-  <script src="./index.js"></script>
+  <script>
+    (function () {
+      const currentUser = localStorage.getItem('chat_app_current_user');
+      if (!currentUser) {
+        window.location.href = '/signin/signin.html';
+      }
+    })();
+  </script>
+
+  <script type="module" src="./index.js"></script>
 </body>
 
 </html>

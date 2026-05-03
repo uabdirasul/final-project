@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc && npm run copy:html",
     "copy:html": "find src -type f -name \"*.html\" -exec sh -c 'mkdir -p \"$(dirname \"dist/${1#src/}\")\" && cp \"$1\" \"dist/${1#src/}\"' _ {} \\;",
-    "dev": "concurrently \"tsc --watch\" \"chokidar 'src/**/*.html' -c 'npm run copy:html'\" \"live-server ./dist\"",
+    "dev": "npm run copy:html && concurrently \"tsc --watch\" \"chokidar 'src/**/*.html' -c 'npm run copy:html'\" \"live-server ./dist\"",
     "serve": "live-server ./dist",
     "start": "npm run build && npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,7 +18,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/uabdirasul/final-project/issues"
   },
