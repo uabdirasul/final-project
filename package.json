@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
+    "serve": "live-server ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/uabdirasul/final-project#readme",
   "devDependencies": {
+    "live-server": "^1.2.2",
     "typescript": "^6.0.3"
   }
 }
