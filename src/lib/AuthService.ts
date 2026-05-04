@@ -14,16 +14,7 @@ export class AuthService {
     email: string,
     password: string
   ): Promise<{ success: boolean; message: string }> {
-    // Validate input
-    const user = new User(username, email, password);
-
-    if (!user.isValid()) {
-      return {
-        success: false,
-        message: "All fields are required and email must be valid"
-      };
-    }
-
+    // Validate input with specific checks first
     if (username.trim().length < 3) {
       return {
         success: false,
@@ -35,6 +26,16 @@ export class AuthService {
       return {
         success: false,
         message: "Password must be at least 3 characters"
+      };
+    }
+
+    // Then validate general format
+    const user = new User(username, email, password);
+
+    if (!user.isValid()) {
+      return {
+        success: false,
+        message: "All fields are required and email must be valid"
       };
     }
 

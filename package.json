@@ -9,7 +9,9 @@
     "dev": "npm run copy:html && concurrently \"tsc --watch\" \"chokidar 'src/**/*.html' -c 'npm run copy:html'\" \"live-server ./dist\"",
     "serve": "live-server ./dist",
     "start": "npm run build && npm run serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -23,9 +25,13 @@
   },
   "homepage": "https://github.com/uabdirasul/final-project#readme",
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.2.1",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
     "live-server": "^1.2.2",
+    "ts-jest": "^29.4.9",
     "typescript": "^6.0.3"
   }
 }
