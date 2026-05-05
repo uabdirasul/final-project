@@ -1,4 +1,4 @@
-import { ChatRoom } from "./ChatRoom.js";
+import { ChatRoom, ChatRoomJSON } from "./ChatRoom.js";
 
 /**
  * Service for managing chat rooms with localStorage persistence
@@ -44,7 +44,9 @@ export class ChatRoomService {
         return [];
       }
       const rooms = JSON.parse(data);
-      return rooms.map((room: any) => ChatRoom.fromJSON(room));
+      return rooms.map((room: Record<string, unknown>) =>
+        ChatRoom.fromJSON(room as unknown as ChatRoomJSON)
+      );
     } catch (error) {
       console.error("Error retrieving rooms from storage:", error);
       return [];

@@ -113,7 +113,7 @@ describe("MessageService", () => {
         }
       });
 
-      const newMsg = await messageService.sendMessage("New", "user1", "room1");
+      await messageService.sendMessage("New", "user1", "room1");
 
       const saved = JSON.parse(savedData);
       expect(saved).toHaveLength(2);
@@ -236,7 +236,9 @@ describe("MessageService", () => {
 
       const saved = JSON.parse(savedData);
       expect(saved).toHaveLength(2);
-      expect(saved.map((m: any) => m.id)).toEqual(["msg1", "msg3"]);
+      expect(
+        saved.map((m: Record<string, unknown>) => (m as { id: string }).id)
+      ).toEqual(["msg1", "msg3"]);
     });
   });
 });

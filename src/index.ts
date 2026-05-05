@@ -445,7 +445,7 @@ class ChatController {
       await this.renderRooms();
     } catch (error) {
       console.error("Error creating room:", error);
-      alert(`Failed to create room: ${(error as any).message}`);
+      alert(`Failed to create room: ${(error as Error).message}`);
     }
   }
 

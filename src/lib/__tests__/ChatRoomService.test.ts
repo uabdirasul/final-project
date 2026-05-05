@@ -184,23 +184,9 @@ describe("ChatRoomService", () => {
     it("should generate unique room ID", async () => {
       storageMock.getItem.mockReturnValueOnce(JSON.stringify([]));
 
-      let savedData1 = "";
-      storageMock.setItem.mockImplementationOnce((key, value) => {
-        if (key === "chat_rooms") {
-          savedData1 = value;
-        }
-      });
-
       const room1 = await chatRoomService.createRoom("Room 1", "user1");
 
       storageMock.getItem.mockReturnValueOnce(JSON.stringify([room1.toJSON()]));
-
-      let savedData2 = "";
-      storageMock.setItem.mockImplementationOnce((key, value) => {
-        if (key === "chat_rooms") {
-          savedData2 = value;
-        }
-      });
 
       const room2 = await chatRoomService.createRoom("Room 2", "user1");
 
@@ -273,7 +259,7 @@ describe("ChatRoomService", () => {
         }
       });
 
-      const room = await chatRoomService.joinRoom("room1", "user1");
+      await chatRoomService.joinRoom("room1", "user1");
 
       const saved = JSON.parse(savedData);
       expect(
@@ -319,13 +305,6 @@ describe("ChatRoomService", () => {
       storageMock.getItem.mockReturnValueOnce(
         JSON.stringify([testRoom.toJSON()])
       );
-
-      let savedData = "";
-      storageMock.setItem.mockImplementation((key, value) => {
-        if (key === "chat_rooms") {
-          savedData = value;
-        }
-      });
 
       const room = await chatRoomService.leaveRoom("room1", "user2");
 

@@ -1,4 +1,4 @@
-import { Message } from "./Message.js";
+import { Message, MessageJSON } from "./Message.js";
 
 /**
  * Service for managing messages with localStorage persistence
@@ -61,7 +61,9 @@ export class MessageService {
         return [];
       }
       const messages = JSON.parse(data);
-      return messages.map((msg: any) => Message.fromJSON(msg));
+      return messages.map((msg: Record<string, unknown>) =>
+        Message.fromJSON(msg as unknown as MessageJSON)
+      );
     } catch (error) {
       console.error("Error retrieving messages from storage:", error);
       return [];

@@ -1,6 +1,15 @@
 /**
  * Message class representing a chat message
  */
+
+export interface MessageJSON {
+  id: string;
+  contents: string;
+  sender: string;
+  roomId: string;
+  timestamp?: number;
+}
+
 export class Message {
   id: string;
   contents: string;
@@ -49,7 +58,7 @@ export class Message {
   /**
    * Create a Message instance from a plain object
    */
-  static fromJSON(data: any): Message {
+  static fromJSON(data: MessageJSON): Message {
     return new Message(
       data.id,
       data.contents,

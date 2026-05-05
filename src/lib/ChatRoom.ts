@@ -1,6 +1,13 @@
 /**
  * ChatRoom class representing a chat room
  */
+
+export interface ChatRoomJSON {
+  id: string;
+  name: string;
+  participants?: string[];
+}
+
 export class ChatRoom {
   id: string;
   name: string;
@@ -49,7 +56,7 @@ export class ChatRoom {
   /**
    * Create a ChatRoom instance from a plain object
    */
-  static fromJSON(data: any): ChatRoom {
+  static fromJSON(data: ChatRoomJSON): ChatRoom {
     return new ChatRoom(data.id, data.name, data.participants || []);
   }
 }
