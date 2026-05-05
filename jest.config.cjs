@@ -10,7 +10,7 @@ module.exports = {
     url: "http://localhost/",
     customExportConditions: [""]
   },
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.cjs"],
   collectCoverageFrom: [
     "src/lib/**/*.ts",
     "!src/lib/**/*.test.ts",

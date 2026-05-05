@@ -8,8 +8,9 @@ pnpm-lock.yaml
 dist/
 build/
 *.js
-!jest.config.js
-!jest.setup.js
+!eslint.config.js
+!jest.config.cjs
+!jest.setup.cjs
 *.js.map
 *.d.ts
 
