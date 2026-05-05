@@ -1,18 +1,6 @@
 # Chat App - Authentication System
 
-A modern chat application with a complete OOP-based authentication system built with TypeScript, HTML5, and Tailwind CSS.
-
-## 📋 Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Running the Project](#running-the-project)
-- [Project Structure](#project-structure)
-- [Usage Guide](#usage-guide)
-- [Default Credentials](#default-credentials)
-- [Available Commands](#available-commands)
-
----
+## A modern chat application with a complete OOP-based authentication system built with TypeScript, HTML5, and Tailwind CSS.
 
 ## 📦 Prerequisites
 
@@ -20,7 +8,7 @@ Before running this project, ensure you have the following installed on your mac
 
 ### Required Software
 
-- **Node.js** (v14 or higher) - [Download](https://nodejs.org/)
+- **Node.js** (v14 or higher, mine v24.11.1) - [Download](https://nodejs.org/)
 - **npm** (comes with Node.js)
 - **Git** (optional, for cloning the repository)
 
@@ -129,102 +117,6 @@ http://127.0.0.1:8080
 
 ---
 
-## 📂 Project Structure
-
-```
-final-project/
-├── src/
-│   ├── lib/
-│   │   ├── User.ts              # User data model and validation
-│   │   ├── StorageService.ts    # localStorage database operations
-│   │   ├── AuthService.ts       # Authentication logic (login, register)
-│   │   └── AuthGuard.ts         # Route protection (optional)
-│   │
-│   ├── signin/
-│   │   ├── signin.ts            # Sign-in form controller
-│   │   └── signin.html          # Sign-in page UI
-│   │
-│   ├── register/
-│   │   ├── register.ts          # Registration form controller
-│   │   └── register.html        # Registration page UI
-│   │
-│   ├── index.ts                 # Main app controller
-│   └── index.html               # Home page (protected)
-│
-├── dist/                        # Compiled JavaScript (generated)
-├── package.json                 # Dependencies and scripts
-├── tsconfig.json                # TypeScript configuration
-└── README.md                    # This file
-```
-
----
-
-## 🎯 Usage Guide
-
-### 1. First Time Visiting the App
-
-When you visit the application for the first time:
-
-1. A default account is automatically created in localStorage
-2. You are redirected to the **Sign In** page (no account logged in)
-3. Use the default credentials to log in
-
-### 2. Sign In
-
-**Default Account:**
-
-- Username: `abdirasul`
-- Password: `password123`
-
-**Steps:**
-
-1. Go to the Sign In page
-2. Enter username and password
-3. Click "Sign In"
-4. If credentials match, you're logged in and redirected to the home page
-5. If credentials don't match, an error message appears: "Invalid username or password"
-
-### 3. Register a New Account
-
-**Required Fields:**
-
-- Username (3+ characters)
-- Email (must be valid email format)
-- Password (3+ characters)
-- Confirm Password (must match password)
-
-**Steps:**
-
-1. Click "Register" link on the Sign In page, or go to `/register/register.html`
-2. Fill in all required fields
-3. Click "Register"
-4. If successful, new account is created AND you're automatically logged in
-5. You're redirected to the home page
-6. If there are errors, a message tells you what went wrong
-
-**Example Registration:**
-
-- Username: `john_doe`
-- Email: `john@example.com`
-- Password: `secure123`
-- Confirm: `secure123`
-
-### 4. Using the Home Page
-
-Once logged in:
-
-- Your username is displayed in the top-right: "Logged in as: [username]"
-- Click the **Logout** button to end your session
-- You'll be redirected to the Sign In page
-
-### 5. Access Control
-
-- **Unauthenticated users cannot access the home page** - they'll be redirected to Sign In
-- **Authenticated users cannot access Sign In/Register pages** - they'll be redirected to Home
-- **Logging out** clears your session and returns you to Sign In
-
----
-
 ## 🔐 Default Credentials
 
 When you first run the application, a default account is created:
@@ -270,3 +162,47 @@ npm run copy:html
 | `npm run dev`       | Starts watch mode, HTML watcher, and live server together |
 | `npm run serve`     | Starts live-server serving the dist/ folder               |
 | `npm run copy:html` | Copies HTML files from src/ to dist/                      |
+
+---
+
+## 📊 Test Coverage
+
+This project has comprehensive test coverage with **90.6% overall line coverage**. All core authentication and storage services are fully tested.
+
+### Coverage Summary
+
+```
+Total Elements:     427
+Covered Elements:   387
+Coverage Rate:      90.6%
+
+Statements:         257 covered / 257 total    (89.1%)
+Methods:            97 covered / 103 total     (94.2%)
+Conditionals:       61 covered / 67 total      (91.0%)
+```
+
+### File-by-File Coverage
+
+| File               | Statements | Conditionals | Methods |
+| ------------------ | ---------- | ------------ | ------- |
+| AuthGuard.ts       | 100%       | 100%         | 100%    |
+| AuthService.ts     | 100%       | 100%         | 100%    |
+| ChatRoom.ts        | 100%       | 100%         | 100%    |
+| ChatRoomService.ts | 95.5%      | 83.3%        | 96.8%   |
+| Message.ts         | 100%       | 100%         | 100%    |
+| MessageService.ts  | 47.8%      | 50.0%        | 45.5%   |
+| StorageService.ts  | 95.7%      | 100%         | 96.3%   |
+| User.ts            | 100%       | 100%         | 100%    |
+
+### Running Tests
+
+```bash
+# Run all tests
+npm run test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Generate coverage report
+npm run test:coverage
+```

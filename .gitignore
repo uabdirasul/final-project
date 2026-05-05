@@ -51,7 +51,7 @@ temp/
 .cache/
 
 # Testing
-coverage/
+# coverage/
 .nyc_output/
 
 # Misc
