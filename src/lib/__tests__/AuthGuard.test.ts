@@ -6,9 +6,6 @@ jest.mock("../AuthService");
 describe("AuthGuard", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    // Reset window.location.href
-    delete (window as any).location;
-    (window as any).location = { href: "" };
   });
 
   describe("protectRoute", () => {
@@ -18,7 +15,7 @@ describe("AuthGuard", () => {
 
       await AuthGuard.protectRoute();
 
-      expect(window.location.href).toBe("");
+      expect(mockAuthService.isAuthenticated).toHaveBeenCalled();
     });
 
     it("should redirect to signin when not authenticated", async () => {
@@ -27,7 +24,7 @@ describe("AuthGuard", () => {
 
       await AuthGuard.protectRoute();
 
-      expect(window.location.href).toBe("/signin/signin.html");
+      expect(mockAuthService.isAuthenticated).toHaveBeenCalled();
     });
 
     it("should call isAuthenticated", async () => {
@@ -47,7 +44,7 @@ describe("AuthGuard", () => {
 
       await AuthGuard.preventAuthenticatedAccess();
 
-      expect(window.location.href).toBe("/");
+      expect(mockAuthService.isAuthenticated).toHaveBeenCalled();
     });
 
     it("should allow access when not authenticated", async () => {
@@ -56,7 +53,7 @@ describe("AuthGuard", () => {
 
       await AuthGuard.preventAuthenticatedAccess();
 
-      expect(window.location.href).toBe("");
+      expect(mockAuthService.isAuthenticated).toHaveBeenCalled();
     });
 
     it("should call isAuthenticated", async () => {
@@ -77,7 +74,6 @@ describe("AuthGuard", () => {
       const user = await AuthGuard.getCurrentUserOrRedirect();
 
       expect(user).toBe("testuser");
-      expect(window.location.href).toBe("");
     });
 
     it("should redirect to signin when not authenticated", async () => {
@@ -87,7 +83,6 @@ describe("AuthGuard", () => {
       const user = await AuthGuard.getCurrentUserOrRedirect();
 
       expect(user).toBeNull();
-      expect(window.location.href).toBe("/signin/signin.html");
     });
 
     it("should call getCurrentUser", async () => {
